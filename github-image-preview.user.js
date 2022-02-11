@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          github-image-preview
+// @name          Github image preview
 // @description   Allow README images to be previewed on full monitor size
 // @author        Aziks
 // @version       1.0
