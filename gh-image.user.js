@@ -142,8 +142,63 @@ const addImageToPortal = (source) => {
   overlay.appendChild(image);
 };
 
+/**
+ * Get the raw url of an image
+ *
+ * @param {HTMLAnchorElement} anchor
+ *
+ * @returns The raw url of the image
+ */
+const getRawImageUrl = (anchor) => {
+  const url = anchor.href;
+  if (url.includes('githubusercontent.com')) return url; // We already have the raw URL
+
+  // Otherwise the raw URL is contained in the child image element source
+  return anchor.firstElementChild.getAttribute('src');
+};
+
+/**
+ * Add a click event listener to all the images from `imageElements`. When an event is
+ * triggered, the image from `imageElements` is added to the portal and the
+ * portal is shown
+ *
+ * @param {HTMLImageElement[]} imageElements An array containing image elements
+ */
+const setOnClickOnImageEvent = (imageElements) => {
+  /** @param {MouseEvent} event */
+  const onClick = (event) => {
+    event.preventDefault();
+
+    /** @type {HTMLImageElement} */
+    const image = event.target;
+    const url = getRawImageUrl(image.parentElement);
+    addImageToPortal(url);
+    togglePortal(true);
+  };
+
+  imageElements.forEach((imageElement) => {
+    const parent = imageElement.parentElement;
+    parent.addEventListener('click', onClick);
+  });
+};
+
 const main = () => {
+  const unfilteredImageElements = getImageElements();
+  if (!unfilteredImageElements) return;
+
+  const imageElements = filterRepoImageElements(
+    Array.from(unfilteredImageElements)
+  );
+  setOnClickOnImageEvent(imageElements);
+
   addPortalToPage();
+
+  const styles = `
+  .gip-image-preview {
+    max-width: 90%;
+    max-height: 90%;
+  }`;
+  addStyles(styles);
 };
 
 main();
