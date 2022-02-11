@@ -23,14 +23,44 @@ const addStyles = (styles) => {
 };
 
 /**
+ * Get the README element
+ *
+ * @returns The README element, or null if it doesn't exist
+ */
+const getReadmeElement = () => document.getElementById('readme');
+
+/**
+ * Get the discussion element. It's present on issue, pull request and
+ * discussion pages.
+ *
+ * @returns The discussion element, or null if it doesn't exist
+ */
+const getDiscussionElement = () =>
+  document.querySelector('#discussion_bucket .js-discussion');
+
+const isReadmePage = () => (getReadmeElement() ? true : false);
+
+const isDiscussionPage = () => (getDiscussionElement() ? true : false);
+
+/**
  * Get all the image elements from the README
  *
  * @returns The image elements contained in the README
  */
-const getImageElements = () => {
-  const readme = document.getElementById('readme');
+const getReadmeImageElements = () => {
+  const readme = getReadmeElement();
   const article = readme.getElementsByTagName('article')[0];
   return article.getElementsByTagName('img');
+};
+
+/**
+ * Get all the image elements from issue, pull request and discussion pages
+ *
+ * @returns The image elements contained in issue, pull request or discussion page
+ */
+const getDiscussionImageElements = () => {
+  const discussion = getDiscussionElement();
+  return discussion.getElementsByTagName('img');
 };
 
 /**
@@ -187,7 +217,14 @@ const setOnClickOnImageEvent = (imageElements) => {
 };
 
 const main = () => {
-  const unfilteredImageElements = getImageElements();
+  /** @type {HTMLCollectionOf<HTMLImageElement>} */
+  let unfilteredImageElements;
+  if (isReadmePage()) {
+    unfilteredImageElements = getReadmeImageElements();
+  } else if (isDiscussionPage()) {
+    unfilteredImageElements = getDiscussionImageElements();
+  }
+
   if (!unfilteredImageElements) return;
 
   const imageElements = filterRepoImageElements(
