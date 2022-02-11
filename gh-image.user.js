@@ -10,6 +10,17 @@
 // ==/UserScript==
 
 /**
+ * Add a style element to the page
+ *
+ * @param {string} styles CSS styles
+ */
+const addStyles = (styles) => {
+  const styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(styles));
+  document.head.appendChild(styleElement);
+};
+
+/**
  * Get all the image elements from the README
  *
  * @returns The image elements contained in the README
