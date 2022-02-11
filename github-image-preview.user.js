@@ -23,17 +23,6 @@ const addStyles = (styles) => {
 };
 
 /**
- * Remove the `z-index` style from the README navbar
- */
-const removeReadmeNavbarZindex = () => {
-  const readme = document.getElementById('readme');
-  const navbar = readme.firstElementChild;
-  const oldStyle = navbar.getAttribute('style');
-  const style = oldStyle.replace(/z-.*;/, ''); // Remove `z-index: xx;`
-  navbar.setAttribute('style', style);
-};
-
-/**
  * Get all the image elements from the README
  *
  * @returns The image elements contained in the README
@@ -114,12 +103,14 @@ const addPortalToPage = () => {
   
   .gip-overlay-background {
     background-color: rgba(30, 30, 30, .7);
+    z-index: 499;
   }
   
   .gip-overlay-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 500;
   }`;
 
   addStyles(styles);
@@ -205,7 +196,6 @@ const main = () => {
   setOnClickOnImageEvent(imageElements);
 
   addPortalToPage();
-  removeReadmeNavbarZindex();
 
   const styles = `
   .gip-image-preview {
