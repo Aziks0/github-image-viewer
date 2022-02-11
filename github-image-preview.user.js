@@ -2,7 +2,7 @@
 // @name          Github image preview
 // @description   Allow README images to be previewed on full monitor size
 // @author        Aziks
-// @version       1.1
+// @version       1.2
 // @homepageURL   https://github.com/Aziks0/github-image-preview
 // @downloadURL   https://github.com/Aziks0/github-image-preview/raw/release/github-image-preview.user.js
 // @license       GPLv3
@@ -57,7 +57,7 @@ const filterRepoImageElements = (imageElements) => {
     if (!link) return false;
     return (
       link.includes('githubusercontent.com') ||
-      link.match('/blob/.*\\.(png|jpe?g)$')
+      link.match('/(blob|raw)/.*\\.(png|jpe?g)(\\?.*)?$')
     );
   });
 };
