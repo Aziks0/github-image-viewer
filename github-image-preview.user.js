@@ -3,6 +3,8 @@
 // @description   Allow README images to be previewed on full monitor size
 // @author        Aziks
 // @version       1.0
+// @homepageURL   https://github.com/Aziks0/github-image-preview
+// @downloadURL   https://github.com/Aziks0/github-image-preview/raw/main/github-image-preview.user.js
 // @license       GPLv3
 // @run-at        document-idle
 // @match         https://github.com/*/*
