@@ -49,5 +49,101 @@ const filterRepoImageElements = (imageElements) => {
   });
 };
 
+/**
+ * Create a portal element
+ *
+ * @returns A portal element
+ */
+const createPortal = () => {
+  const closeOnClick = (event) => {
+    const element = event.target;
+    if (element.id !== 'gip-overlay-container') return;
+    togglePortal(false);
+  };
+
+  const background = document.createElement('div');
+  background.classList.add('gip-overlay-background', 'gip-fixed');
+
+  const container = document.createElement('div');
+  container.classList.add('gip-overlay-container', 'gip-fixed');
+  container.setAttribute('id', 'gip-overlay-container');
+  container.addEventListener('click', closeOnClick);
+
+  const portal = document.createElement('div');
+  portal.classList.add('gip-portal');
+  portal.setAttribute('style', 'display: none;');
+  portal.setAttribute('id', 'gip-portal');
+  portal.appendChild(background);
+  portal.appendChild(container);
+
+  return portal;
 };
 
+/**
+ * Add a portal to the page
+ */
+const addPortalToPage = () => {
+  const styles = `
+  .gip-portal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .gip-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .gip-overlay-background {
+    background-color: rgba(30, 30, 30, .7);
+  }
+  
+  .gip-overlay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }`;
+
+  addStyles(styles);
+
+  const portal = createPortal();
+  document.body.appendChild(portal);
+};
+
+/**
+ * Toggle the portal
+ *
+ * @param {boolean} display
+ */
+const togglePortal = (display) => {
+  const style = display ? '' : 'display: none';
+  const portal = document.getElementById('gip-portal');
+  portal.setAttribute('style', style);
+};
+
+/**
+ * Add an image element to portal, the previous content of the portal is removed
+ *
+ * @param {string} source The image source URL
+ */
+const addImageToPortal = (source) => {
+  const image = document.createElement('img');
+  image.setAttribute('src', source);
+  image.classList.add('gip-image-preview');
+
+  // Replace content with the new image
+  const overlay = document.getElementById('gip-overlay-container');
+  overlay.innerHTML = '';
+  overlay.appendChild(image);
+};
+
+const main = () => {
+  addPortalToPage();
+};
+
+main();
