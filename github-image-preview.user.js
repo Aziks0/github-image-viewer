@@ -76,7 +76,7 @@ const filterRepoImageElements = (imageElements) => {
     if (!link) return false;
     return (
       link.includes('githubusercontent.com') ||
-      link.match('/(blob|raw)/.*\\.(png|jpe?g)(\\?.*)?$')
+      link.match('/(blob|raw)/.*\\.(png|jpe?g|gif)(\\?.*)?$')
     );
   });
 };
