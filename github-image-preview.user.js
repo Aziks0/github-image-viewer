@@ -5,7 +5,7 @@
 // @version       1.2
 // @homepageURL   https://github.com/Aziks0/github-image-preview
 // @downloadURL   https://github.com/Aziks0/github-image-preview/raw/release/github-image-preview.user.js
-// @license       GPLv3
+// @license       GPL-3.0-or-later
 // @run-at        document-idle
 // @match         https://github.com/*/*
 // @grant         none
