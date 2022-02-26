@@ -3,8 +3,8 @@
 // @description   View readme/issues/PR images in full screen, w/o leaving the page
 // @author        Aziks
 // @version       1.2
-// @homepageURL   https://github.com/Aziks0/github-image-preview
-// @downloadURL   https://github.com/Aziks0/github-image-preview/raw/release/github-image-preview.user.js
+// @homepageURL   https://github.com/Aziks0/github-image-viewer
+// @downloadURL   https://github.com/Aziks0/github-image-viewer/raw/release/github-image-preview.user.js
 // @license       GPL-3.0-or-later
 // @run-at        document-idle
 // @match         https://github.com/*/*
@@ -252,7 +252,6 @@ const main = () => {
     Array.from(unfilteredImageElements)
   );
   setOnClickOnImageEvent(imageElements);
-
 };
 
 const globalStyles = `
