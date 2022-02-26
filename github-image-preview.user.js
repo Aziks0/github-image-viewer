@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          Github image preview
-// @description   Allow README images to be previewed on full monitor size
+// @description   View readme/issues/PR images in full screen, w/o leaving the page
 // @author        Aziks
 // @version       1.2
 // @homepageURL   https://github.com/Aziks0/github-image-preview
