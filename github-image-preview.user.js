@@ -11,6 +11,8 @@
 // @grant         none
 // ==/UserScript==
 
+let lastUrl = location.href;
+
 /**
  * Add a style element to the page
  *
@@ -216,6 +218,25 @@ const setOnClickOnImageEvent = (imageElements) => {
   });
 };
 
+/**
+ * Observe page content mutation
+ */
+const setPageObserver = () => {
+  const callback = (_mutationList, _observer) => {
+    const currentUrl = location.href;
+    if (lastUrl === currentUrl) return; // Do nothing if the page hasn't changed
+
+    lastUrl = currentUrl;
+    main();
+  };
+
+  const target = document.getElementById('repo-content-pjax-container');
+  if (!target) return;
+  const options = { subtree: true, childList: true };
+  const observer = new MutationObserver(callback);
+  observer.observe(target, options);
+};
+
 const main = () => {
   /** @type {HTMLCollectionOf<HTMLImageElement>} */
   let unfilteredImageElements;
@@ -232,14 +253,15 @@ const main = () => {
   );
   setOnClickOnImageEvent(imageElements);
 
-  addPortalToPage();
-
-  const styles = `
-  .gip-image-preview {
-    max-width: 90%;
-    max-height: 90%;
-  }`;
-  addStyles(styles);
 };
+
+const globalStyles = `
+.gip-image-preview {
+  max-width: 90%;
+  max-height: 90%;
+}`;
+addStyles(globalStyles);
+addPortalToPage();
+setPageObserver();
 
 main();
