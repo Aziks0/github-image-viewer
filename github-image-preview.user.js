@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          Github image preview
+// @name          Github image viewer
 // @description   View readme/issues/PR images in full screen, w/o leaving the page
 // @author        Aziks
 // @version       1.2
