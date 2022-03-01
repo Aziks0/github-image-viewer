@@ -2,7 +2,7 @@
 // @name          Github image viewer
 // @description   View readme/issues/PR images in full screen, w/o leaving the page
 // @author        Aziks
-// @version       1.3
+// @version       1.4
 // @homepageURL   https://github.com/Aziks0/github-image-viewer
 // @downloadURL   https://github.com/Aziks0/github-image-viewer/raw/release/github-image-viewer.user.js
 // @license       GPL-3.0-or-later
@@ -10,8 +10,6 @@
 // @match         https://github.com/*/*
 // @grant         none
 // ==/UserScript==
-
-let lastUrl = location.href;
 
 /**
  * Add a style element to the page
@@ -218,25 +216,6 @@ const setOnClickOnImageEvent = (imageElements) => {
   });
 };
 
-/**
- * Observe page content mutation
- */
-const setPageObserver = () => {
-  const callback = (_mutationList, _observer) => {
-    const currentUrl = location.href;
-    if (lastUrl === currentUrl) return; // Do nothing if the page hasn't changed
-
-    lastUrl = currentUrl;
-    main();
-  };
-
-  const target = document.getElementById('repo-content-pjax-container');
-  if (!target) return;
-  const options = { subtree: true, childList: true };
-  const observer = new MutationObserver(callback);
-  observer.observe(target, options);
-};
-
 const main = () => {
   /** @type {HTMLCollectionOf<HTMLImageElement>} */
   let unfilteredImageElements;
@@ -261,6 +240,7 @@ const globalStyles = `
 }`;
 addStyles(globalStyles);
 addPortalToPage();
-setPageObserver();
 
 main();
+
+document.addEventListener('pjax:success', main);
