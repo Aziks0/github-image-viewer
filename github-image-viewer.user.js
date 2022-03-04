@@ -8,6 +8,7 @@
 // @license       GPL-3.0-or-later
 // @run-at        document-idle
 // @match         https://github.com/*/*
+// @require       https://unpkg.com/feather-icons
 // @grant         none
 // ==/UserScript==
 
@@ -192,13 +193,15 @@ const getRawImageUrl = (anchor) => {
 };
 
 /**
- * Add a click event listener to all the images from `imageElements`. When an event is
- * triggered, the image from `imageElements` is added to the portal and the
- * portal is shown
+ * Add a click event listener to all the images from
+ * `imageElements`. When the event is triggered, the image from `imageElements`
+ * is added to the portal and the portal is shown.
+ *
+ * Add a CSS class that display an icon on hover.
  *
  * @param {HTMLImageElement[]} imageElements An array containing image elements
  */
-const setOnClickOnImageEvent = (imageElements) => {
+const setImagesEvents = (imageElements) => {
   /** @param {MouseEvent} event */
   const onClick = (event) => {
     event.preventDefault();
@@ -212,7 +215,13 @@ const setOnClickOnImageEvent = (imageElements) => {
 
   imageElements.forEach((imageElement) => {
     const parent = imageElement.parentElement;
+    parent.classList.add('gip-image-container');
     parent.addEventListener('click', onClick);
+
+    const icon = document.createElement('i');
+    icon.setAttribute('data-feather', 'maximize-2');
+    icon.classList.add('gip-image-maximize-icon');
+    parent.appendChild(icon);
   });
 };
 
@@ -230,14 +239,33 @@ const main = () => {
   const imageElements = filterRepoImageElements(
     Array.from(unfilteredImageElements)
   );
-  setOnClickOnImageEvent(imageElements);
+  setImagesEvents(imageElements);
+
+  feather.replace();
 };
 
 const globalStyles = `
 .gip-image-viewer {
   max-width: 90%;
   max-height: 90%;
-}`;
+}
+.gip-image-container {
+  position: relative;
+}
+.gip-image-maximize-icon {
+  display: none;
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  top: -6px;
+  right: 4px;
+  color: white;
+  background-color: #00000070;
+}
+.gip-image-container:hover .gip-image-maximize-icon {
+  display: inline-block;
+}
+`;
 addStyles(globalStyles);
 addPortalToPage();
 
