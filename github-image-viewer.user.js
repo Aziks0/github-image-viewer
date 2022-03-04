@@ -168,7 +168,7 @@ const togglePortal = (display) => {
 const addImageToPortal = (source) => {
   const image = document.createElement('img');
   image.setAttribute('src', source);
-  image.classList.add('gip-image-preview');
+  image.classList.add('gip-image-viewer');
 
   // Replace content with the new image
   const overlay = document.getElementById('gip-overlay-container');
@@ -234,7 +234,7 @@ const main = () => {
 };
 
 const globalStyles = `
-.gip-image-preview {
+.gip-image-viewer {
   max-width: 90%;
   max-height: 90%;
 }`;
