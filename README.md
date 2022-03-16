@@ -1,6 +1,6 @@
 # Github image viewer
 
-A userscript allowing github images and gif in README, PR and issues to be viewed, in
+A userscript allowing github images and gif in README, PR, issues and discussions to be viewed, in
 full width, without leaving the page!
 
 \
@@ -24,6 +24,6 @@ full width, without leaving the page!
 
 ### Usage
 
-Just left-click on any image or gif in a github README, PR or
-issue. To close the viewer, click outside the image. \
+Just left-click on any image or gif in a github README, PR,
+issue or discussion. To close the viewer, click outside the image. \
 _(you can reload this page and click on the gif just above to see how it works)_
