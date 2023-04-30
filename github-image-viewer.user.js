@@ -39,9 +39,9 @@ const getReadmeElement = () => document.getElementById('readme');
 const getDiscussionElement = () =>
   document.querySelector('#discussion_bucket .js-discussion');
 
-const isReadmePage = () => (getReadmeElement() ? true : false);
+const isReadmePage = () => (!!getReadmeElement());
 
-const isDiscussionPage = () => (getDiscussionElement() ? true : false);
+const isDiscussionPage = () => (!!getDiscussionElement());
 
 /**
  * Get all the image elements from the README
