@@ -2,7 +2,7 @@
 // @name          Github image viewer
 // @description   View readme/issues/PR images in full screen, w/o leaving the page
 // @author        Aziks
-// @version       1.5
+// @version       1.6
 // @homepageURL   https://github.com/Aziks0/github-image-viewer
 // @downloadURL   https://github.com/Aziks0/github-image-viewer/raw/main/github-image-viewer.user.js
 // @license       GPL-3.0-or-later
