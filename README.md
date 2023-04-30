@@ -19,7 +19,7 @@ full width, without leaving the page!
      [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
      (Recommended),
      [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-1. Install the userscript by clicking [this link](https://github.com/Aziks0/github-image-viewer/raw/release/github-image-viewer.user.js)
+1. Install the userscript by clicking [this link](https://github.com/Aziks0/github-image-viewer/raw/main/github-image-viewer.user.js)
 2. Done!
 
 ### Usage

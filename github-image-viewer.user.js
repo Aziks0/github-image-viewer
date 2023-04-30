@@ -4,7 +4,7 @@
 // @author        Aziks
 // @version       1.5
 // @homepageURL   https://github.com/Aziks0/github-image-viewer
-// @downloadURL   https://github.com/Aziks0/github-image-viewer/raw/release/github-image-viewer.user.js
+// @downloadURL   https://github.com/Aziks0/github-image-viewer/raw/main/github-image-viewer.user.js
 // @license       GPL-3.0-or-later
 // @run-at        document-idle
 // @match         https://github.com/*/*
